@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Duel Masters Card Database</title>
+	<style>
+		body, p, td { font-family: Arial, Helvetica, sans-serif; font-size: 9pt; }
+		.subtle { color: gray; text-decoration: none; font-size: 8pt; }
+	</style>
+</head>
+<body bgcolor="#990000">
+<img src="/images/dmdb_banner.jpg">
+<form method="GET">
+<table cellpadding="0" cellspacing="0" border="3" bordercolor="#000000" bgcolor="#EAEAEA">
+	<tbody>
+		<tr>
+			<td>
+				<table>
+					<tbody>
+						<tr>
+							<td>
+								<select name="colorfilter" id="civ">
+									<option disabled selected>Select Civilization</option>
+									<option value="All_civs">All Civilizations</option>
+									<option value="Light">Light</option>
+									<option value="Water">Water</option>
+									<option value="Darkness">Darkness</option>
+									<option value="Fire">Fire</option>
+									<option value="Nature">Nature</option>
+								</select>
+								<br>
+								<i>Filter by Civilizations</i>
+							</td>
+							<td>
+								<select name="keyword_filter" id="keyword">
+									<option disabled selected>Select Keyword</option>
+									<option value="blocker">Blocker</option>
+									<option value="double_break">Double Breaker</option>
+									<option value="triple_break">Triple Breaker</option>
+									<option value="crew_break">Crew Breaker</option>
+									<option value="power_attack">Power Attacker</option>
+									<option value="shield_trigger">Shield Trigger</option>
+									<option value="slayer">Slayer</option>
+									<option value="speed_attack">Speed Attacker</option>
+									<option value="survivor">Survivor</option>
+									<option value="tap_ability">Tap Ability</option>
+								</select>
+								<br>
+								<i>Filter by Keyword</i>
+							</td>
+							<td>
+								<select name="costfilter" id="cost">
+									<option disabled selected>Select Cost</option>
+									<option value="All_costs">All Costs</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+									<option value="13">13</option>
+								</select>
+								<br>
+								<i>Filter by Cost</i>
+							</td>
+							<td>
+								<select name="set_filter" id="set">
+									<option disabled selected>Select Set</option>
+									<option value="All_sets">All Sets</option>
+									<option value="dm-01">DM-01 Base Set</option>
+									<option value="dm-02">DM-02 Evo-Crushinators of Doom</option>
+									<option value="dm-03">DM-03 Rampage of the Super Warriors</option>
+									<option value="dm-04">DM-04 Shadowclash of Blinding Night</option>
+									<option value="dm-05">DM-05 Survivors of the Megapocalypse</option>
+									<option value="dm-06">DM-06 Stomp-a-trons of Invincible Wrath</option>
+									<option value="dm-07">DM-07 Thundercharge of Ultra Destruction</option>
+									<option value="dm-08">DM-08 Epic Dragons of Hyperchaos</option>
+									<option value="dm-09">DM-09 Fatal Brood of Infinite Ruin</option>
+									<option value="dm-10">DM-10 Shockwaves of the Shattered Rainbow</option>
+									<option value="dm-11">DM-11 Blast-o-splosion of Gigantic Rage</option>
+									<option value="dm-12">DM-12 Thrash of the Hybrid Megacreatures</option>
+								</select>
+								<br>
+								<i>Filter by Set</i>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<select name="type_filter" id="type">
+									<option disabled selected>Select Type</option>
+									<option value="All_types">All Types</option>
+									<option value="Spell">Spell</option>
+									<option value="Creature">Creature</option>
+									<option value="Evolution">Evolution Creature</option>
+								</select>
+								<br>
+								<i>Filter by Type</i>
+							</td>
+							<td>
+								<select name="category_filter" id="category">
+									<option disabled selected>Select Category</option>
+									<option value="all_categories">All Categories</option>
+									<option value="draw">Draw cards</option>
+									<option value="ramp">Add cards to mana zone</option>
+									<option value="discard">Discard from opponent's hand</option>
+									<option value="discard_own">Discard from your hand</option>
+									<option value="add_shield">Add card to shields</option>
+								</select>
+								<br>
+								<i>Filter by Category</i>
+							</td>
+							<td>
+								<select name="rarity_filter" id="rarity">
+									<option disabled selected>Select Rarity</option>
+									<option value="All_rarities">All Rarities</option>
+									<option value="Common">Common</option>
+									<option value="Uncommon">Uncommon</option>
+									<option value="Rare">Rare</option>
+									<option value="Very Rare">Very Rare</option>
+									<option value="Super Rare">Super Rare</option>
+								</select>
+								<br>
+								<i>Filter by Rarity</i>
+							</td>
+							<td>
+								<select name="sortby" id="sort">
+									<option value="name" selected>Sort by Name</option>
+									<option value="civilization">Sort by Civilization</option>
+									<option value="cost">Sort by Cost</option>
+									<option value="type">Sort by Type</option>
+									<option value="race">Sort by Race</option>
+									<option value="power">Sort by Power</option>
+									<option value="rarity">Sort by Rarity</option>
+									<option value="number">Sort by Collector #</option>
+									<option value="set">Sort by Set</option>
+								</select>
+								<br>
+								<i>Pick sort order</i>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<input name="search_term" type="text" size="30" maxlength="35">
+								<br>
+								<i>Enter a search term</i>
+							</td>
+							<td>
+								<input type="button" onclick="submitSearch()" value="Search!">
+								<br>
+								<a class="subtle" href="/dmdb">(Clear)</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</form>
+
+<br>
+
+<table cellpadding="3" cellspacing="1" width="750">
+<tbody>
+	<tr bgcolor="#C5C5C5">
+		<td>
+			<b>#</b>
+		</td>
+		<td>
+			<b>Name</b>
+		</td>
+		<td>
+			<b>Civilization</b>
+		</td>
+		<td>
+			<b>Cost</b>
+		</td>
+		<td>
+			<b>Type</b>
+		</td>
+		<td>
+			<b>Race</b>
+		</td>
+		<td>
+			<b>Power</b>
+		</td>
+		<td>
+			<b>Rarity</b>
+		</td>
+		<td>
+			<b>Col #</b>
+		</td>
+		<td>
+			<b>Set</b>
+		</td>
+	</tr>
+	<tr th:each="card, iterStat : ${results}" onmouseover="this.style.backgroundColor='#EAEAEA'" style="cursor: pointer; background-color: rgb(255, 255, 255);"
+		bgcolor="#FFFFFF" th:data-card-id="${card.card_id}" onclick="openCardImage(this)" onmouseout="this.style.backgroundColor='#FFFFFF'">
+		<td th:text="${iterStat.index + 1 + '. '}"></td>
+		<td th:text="${card.card_name}"></td>
+		<td th:text="${card.civilization}"></td>
+		<td th:text="${card.cost}"></td>
+		<td th:text="${card.card_type}"></td>
+		<td th:text="${card.race}"></td>
+		<td th:text="${card.power}"></td>
+		<td th:text="${card.rarity}"></td>
+		<td th:text="${card.coll_num}"></td>
+		<td th:text="${card.card_set}"></td>
+	</tr>
+</tbody>
+</table>
+<script src="/dmdb.js"></script>
+</body>
+</html>
+
